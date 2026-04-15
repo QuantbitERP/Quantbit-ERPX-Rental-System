@@ -13,6 +13,8 @@
   "col_break_1",
   "contract_date",
   "created_by_staff",
+  "is_active",
+  "is_closed",
   "section_customer",
   "customer",
   "customer_kyc",
@@ -28,6 +30,7 @@
   "vehicle_make_model",
   "vehicle_category",
   "col_break_4",
+  "vehicle_status_at_contract",
   "vehicle_colour",
   "insurance_type",
   "section_dates",
@@ -42,6 +45,8 @@
   "delivery_required",
   "delivery_location",
   "delivery_charge",
+  "total_days",
+  "km_used",
   "section_rates",
   "rate_card",
   "daily_rate",
@@ -51,6 +56,7 @@
   "free_km_per_day",
   "free_km_per_week",
   "free_km_per_month",
+  "rate_type_used",
   "col_break_8",
   "excess_km_charge_daily",
   "excess_km_charge_monthly",
@@ -831,6 +837,42 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "is_active",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle_status_at_contract",
+   "fieldtype": "Data",
+   "label": "Vehicle Status At Contract "
+  },
+  {
+   "fieldname": "total_days",
+   "fieldtype": "Int",
+   "label": "Total Days",
+   "read_only": 1
+  },
+  {
+   "fieldname": "km_used",
+   "fieldtype": "Float",
+   "label": "Km Used",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_closed",
+   "fieldtype": "Check",
+   "label": "is_closed"
+  },
+  {
+   "fieldname": "rate_type_used",
+   "fieldtype": "Select",
+   "label": "Rate Type Used",
+   "options": "Daily\nWeekly\nMonthly"
   }
  ],
  "is_submittable": 1,
@@ -848,7 +890,7 @@
    "link_fieldname": "rental_contract"
   }
  ],
- "modified": "2026-04-14 13:55:10.099869",
+ "modified": "2026-04-15 14:33:34.102182",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Rental Contract",

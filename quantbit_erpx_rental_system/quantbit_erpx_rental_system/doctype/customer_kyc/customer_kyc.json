@@ -9,19 +9,19 @@
   "section_type",
   "customer",
   "customer_type",
+  "mobile_number",
   "kyc_status",
   "col_break_1",
+  "email_address",
   "blacklist_reason",
   "blacklist_notes",
   "section_personal",
   "full_name",
   "date_of_birth",
   "gender",
-  "nationality",
   "col_break_2",
   "country_of_residence",
-  "mobile_number",
-  "email_address",
+  "nationality",
   "col_break_3",
   "residential_address",
   "work_address",
@@ -109,7 +109,7 @@
    "reqd": 1
   },
   {
-   "default": "Active",
+   "default": "Under Review",
    "fieldname": "kyc_status",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -138,7 +138,7 @@
    "depends_on": "eval:doc.customer_type=='Individual'",
    "fieldname": "section_personal",
    "fieldtype": "Section Break",
-   "label": "Personal Details"
+   "label": "Individual Details"
   },
   {
    "fieldname": "full_name",
@@ -176,8 +176,7 @@
    "description": "WhatsApp alerts will be sent to this number",
    "fieldname": "mobile_number",
    "fieldtype": "Data",
-   "label": "Mobile Number / \u0631\u0642\u0645 \u0627\u0644\u062c\u0648\u0627\u0644",
-   "reqd": 1
+   "label": "Mobile Number / \u0631\u0642\u0645 \u0627\u0644\u062c\u0648\u0627\u0644"
   },
   {
    "fieldname": "email_address",
@@ -521,7 +520,7 @@
   }
  ],
  "links": [],
- "modified": "2026-04-14 13:55:07.292562",
+ "modified": "2026-04-15 11:48:35.934174",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Customer KYC",

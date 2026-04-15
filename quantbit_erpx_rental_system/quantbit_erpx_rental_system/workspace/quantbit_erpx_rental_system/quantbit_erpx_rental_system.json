@@ -413,75 +413,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Rental Masters",
-   "link_count": 6,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Customer KYC",
-   "link_count": 0,
-   "link_to": "Customer KYC",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Tenant Profile",
-   "link_count": 0,
-   "link_to": "Tenant Profile",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Rate Card",
-   "link_count": 0,
-   "link_to": "Rate Card",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "VAT Configuration",
-   "link_count": 0,
-   "link_to": "VAT Configuration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Insurance Policy",
-   "link_count": 0,
-   "link_to": "Insurance Policy",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Owner Agreement",
-   "link_count": 0,
-   "link_to": "Owner Agreement",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Rental Operations",
    "link_count": 13,
    "link_type": "DocType",
@@ -696,9 +627,88 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rental Masters",
+   "link_count": 7,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicle Master",
+   "link_count": 0,
+   "link_to": "Vehicle Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer KYC",
+   "link_count": 0,
+   "link_to": "Customer KYC",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tenant Profile",
+   "link_count": 0,
+   "link_to": "Tenant Profile",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rate Card",
+   "link_count": 0,
+   "link_to": "Rate Card",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "VAT Configuration",
+   "link_count": 0,
+   "link_to": "VAT Configuration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Insurance Policy",
+   "link_count": 0,
+   "link_to": "Insurance Policy",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Owner Agreement",
+   "link_count": 0,
+   "link_to": "Owner Agreement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-04-14 15:18:33.374545",
+ "modified": "2026-04-15 12:41:36.566088",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Quantbit ERPX Rental System",
