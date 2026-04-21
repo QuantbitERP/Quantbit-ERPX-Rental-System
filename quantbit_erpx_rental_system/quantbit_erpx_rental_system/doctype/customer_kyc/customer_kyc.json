@@ -25,6 +25,7 @@
   "col_break_3",
   "residential_address",
   "work_address",
+  "documents_tab",
   "section_identity",
   "id_document_type",
   "id_number",
@@ -53,9 +54,6 @@
   "industry",
   "company_main_line",
   "company_email",
-  "col_break_8",
-  "registered_address",
-  "billing_address",
   "section_signatory",
   "signatory_name",
   "signatory_title",
@@ -353,20 +351,6 @@
    "options": "Email"
   },
   {
-   "fieldname": "col_break_8",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "registered_address",
-   "fieldtype": "Small Text",
-   "label": "Registered Address"
-  },
-  {
-   "fieldname": "billing_address",
-   "fieldtype": "Small Text",
-   "label": "Billing Address (if different)"
-  },
-  {
    "collapsible": 1,
    "depends_on": "eval:doc.customer_type=='Corporate'",
    "fieldname": "section_signatory",
@@ -517,10 +501,15 @@
    "fieldname": "internal_notes",
    "fieldtype": "Small Text",
    "label": "Internal Notes"
+  },
+  {
+   "fieldname": "documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
   }
  ],
  "links": [],
- "modified": "2026-04-15 11:48:35.934174",
+ "modified": "2026-04-21 17:29:20.789340",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Customer KYC",
