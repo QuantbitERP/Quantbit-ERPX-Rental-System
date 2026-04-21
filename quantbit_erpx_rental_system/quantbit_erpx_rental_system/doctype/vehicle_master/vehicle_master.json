@@ -774,8 +774,7 @@
    "fieldname": "current_contract",
    "fieldtype": "Link",
    "label": "Active Rental Contract",
-   "options": "Rental Contract",
-   "read_only": 1
+   "options": "Rental Contract"
   },
   {
    "fieldname": "current_customer",
@@ -836,7 +835,7 @@
    "link_fieldname": "vehicle"
   }
  ],
- "modified": "2026-04-14 13:55:01.370368",
+ "modified": "2026-04-21 16:48:09.193342",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Vehicle Master",

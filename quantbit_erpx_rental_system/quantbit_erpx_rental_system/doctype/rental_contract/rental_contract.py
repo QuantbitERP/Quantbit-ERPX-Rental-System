@@ -5,6 +5,77 @@ from frappe.model.document import Document
 from frappe.utils import today, date_diff
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+#  RENTAL ITEM CATALOGUE
+#  Each entry defines the item_code, name, description and which charge field
+#  on the contract maps to it.  Adding a new charge type = add one dict here.
+# ─────────────────────────────────────────────────────────────────────────────
+RENTAL_ITEMS = {
+    "base_rental": {
+        "item_code" : "Vehicle Rental",
+        "item_name" : "Vehicle Rental Charge",
+        "description": "Base vehicle rental charge",
+    },
+    "excess_km": {
+        "item_code" : "Excess KM Charge",
+        "item_name" : "Excess Mileage Charge",
+        "description": "Charge for kilometres driven beyond the free allowance",
+    },
+    "late_return": {
+        "item_code" : "Late Return Charge",
+        "item_name" : "Late Return Penalty",
+        "description": "Penalty for returning the vehicle after the agreed time",
+    },
+    "damage": {
+        "item_code" : "Damage Charge",
+        "item_name" : "Damage / Penalty Charges",
+        "description": "Vehicle damage or penalty charges assessed on return",
+    },
+}
+
+
+def _ensure_item_exists(item_key: str, income_account: str, cost_center: str):
+    """
+    Guarantee that the ERPNext Item record for *item_key* exists.
+
+    • If it already exists  → nothing to do.
+    • If it is missing      → create it automatically as a non-stock Service item
+                              so invoice insertion never fails due to a missing item.
+
+    This is intentionally idempotent: safe to call every time an invoice is built.
+    """
+    meta = RENTAL_ITEMS[item_key]
+    code = meta["item_code"]
+
+    if frappe.db.exists("Item", code):
+        return  # already present — fast path
+
+    frappe.logger().info(
+        f"[RentalContract] Auto-creating missing Item '{code}'"
+    )
+
+    item = frappe.new_doc("Item")
+    item.item_code        = code
+    item.item_name        = meta["item_name"]
+    item.description      = meta["description"]
+    item.item_group       = "Services"          # adjust to your Item Group if different
+    item.stock_uom        = "Nos"
+    item.is_stock_item    = 0
+    item.is_sales_item    = 1
+    item.is_purchase_item = 0
+
+    # Default income account so the item can be used on invoices immediately
+    if income_account:
+        item.append("item_defaults", {
+            "company"        : frappe.defaults.get_global_default("company"),
+            "income_account" : income_account,
+            "cost_center"    : cost_center,
+        })
+
+    item.insert(ignore_permissions=True)
+    frappe.db.commit()
+
+
 class RentalContract(Document):
 
     # ─────────────────────────────────────────────
@@ -87,8 +158,8 @@ class RentalContract(Document):
     def on_submit(self):
         if self.contract_status == "Active":
             frappe.db.set_value("Vehicle Master", self.vehicle, {
-                "vehicle_status": "On Rent",
-                "current_contract": self.name
+                "vehicle_status"   : "On Rent",
+                "current_contract" : self.name,
             })
 
     # ─────────────────────────────────────────────
@@ -110,37 +181,33 @@ class RentalContract(Document):
 
         # ── Release vehicle ──
         frappe.db.set_value("Vehicle Master", self.vehicle, {
-            "vehicle_status": "Available",
-            "current_contract": None
+            "vehicle_status"   : "Available",
+            "current_contract" : None,
         })
 
         # ── Fetch totals from child payment docs ──
         total_advance = frappe.db.sql("""
             SELECT IFNULL(SUM(advance_amount), 0)
-            FROM `tabAdvance Payment Entry`
-            WHERE rental_contract = %s AND docstatus = 1
+            FROM   `tabAdvance Payment Entry`
+            WHERE  rental_contract = %s AND docstatus = 1
         """, self.name)[0][0] or 0
 
         total_deposit = frappe.db.sql("""
             SELECT IFNULL(SUM(deposit_amount), 0)
-            FROM `tabSecurity Deposit Entry`
-            WHERE rental_contract = %s AND docstatus = 1
+            FROM   `tabSecurity Deposit Entry`
+            WHERE  rental_contract = %s AND docstatus = 1
         """, self.name)[0][0] or 0
 
         damage = self.damage_charges or 0
         mode   = self.deposit_settlement_mode or ""
 
         # ── Deposit settlement logic ──
-        #    Deposit covers damage first; remainder is refundable.
         deposit_used_for_damage = min(damage, total_deposit)
         deposit_refund          = total_deposit - deposit_used_for_damage
 
-        # ── Net due from customer ──
-        #    (Total invoice) - (advance paid) - (any deposit applied to invoice)
-        #    Deposit is NOT applied to invoice unless mode says so.
         if mode == "Apply to Final Invoice First":
             deposit_applied_to_invoice = min(
-                deposit_refund,                         # surplus after covering damage
+                deposit_refund,
                 (self.total_amount or 0) - total_advance
             )
             deposit_applied_to_invoice = max(deposit_applied_to_invoice, 0)
@@ -149,24 +216,24 @@ class RentalContract(Document):
             deposit_applied_to_invoice = 0
 
         net_due = (self.total_amount or 0) - total_advance - deposit_applied_to_invoice
-        net_due = max(net_due, 0)   # never negative
+        net_due = max(net_due, 0)
 
         # ── Persist summary fields ──
-        self.db_set("advance_applied",  total_advance)
-        self.db_set("deposit_applied",  deposit_applied_to_invoice)
-        self.db_set("net_due",          net_due)
+        self.db_set("advance_applied", total_advance)
+        self.db_set("deposit_applied", deposit_applied_to_invoice)
+        self.db_set("net_due",         net_due)
 
         # ── Create invoice if not already done ──
         if not self.sales_invoice:
             self.create_sales_invoice(
-                total_advance            = total_advance,
-                total_deposit            = total_deposit,
-                damage_charges           = damage,
-                deposit_used_for_damage  = deposit_used_for_damage,
-                deposit_refund           = deposit_refund,
-                deposit_applied_invoice  = deposit_applied_to_invoice,
-                net_due                  = net_due,
-                mode                     = mode,
+                total_advance           = total_advance,
+                total_deposit           = total_deposit,
+                damage_charges          = damage,
+                deposit_used_for_damage = deposit_used_for_damage,
+                deposit_refund          = deposit_refund,
+                deposit_applied_invoice = deposit_applied_to_invoice,
+                net_due                 = net_due,
+                mode                    = mode,
             )
 
     # ─────────────────────────────────────────────
@@ -189,10 +256,12 @@ class RentalContract(Document):
           • Line 2 : Excess KM charges  (if any)
           • Line 3 : Late return charge  (if any)
           • Line 4 : Damage / penalty charges  (if any)
-          • Custom fields record advance, deposit breakdown, and refund due
-            so the printed invoice shows the customer a full settlement summary.
+
+        All required Item records are auto-created on first use so this
+        method never fails with "Item X not found".
         """
         try:
+            # ── Resolve accounts ──────────────────────────────────────────
             income_account = frappe.db.get_value(
                 "Account",
                 {"company": self.company, "root_type": "Income", "is_group": 0},
@@ -202,23 +271,29 @@ class RentalContract(Document):
                 "Company", self.company, "cost_center"
             )
 
+            # ── Guarantee every Item exists before touching the invoice ───
+            for key in RENTAL_ITEMS:
+                _ensure_item_exists(key, income_account, cost_center)
+
+            # ── Build the Sales Invoice ───────────────────────────────────
             si = frappe.new_doc("Sales Invoice")
-            si.customer        = self.customer
-            si.company         = self.company
-            si.posting_date    = today()
+            si.customer     = self.customer
+            si.company      = self.company
+            si.posting_date = today()
             si.rental_contract = self.name
-            si.debit_to        = frappe.db.get_value(
+            si.debit_to     = frappe.db.get_value(
                 "Company", self.company, "default_receivable_account"
             )
 
-            # ── Line 1: Base Rental ──
+            # ── Line 1: Base Rental ───────────────────────────────────────
             si.append("items", {
-                "item_code"      : "Vehicle Rental",
-                "item_name"      : "Vehicle Rental Charge",
+                "item_code"      : RENTAL_ITEMS["base_rental"]["item_code"],
+                "item_name"      : RENTAL_ITEMS["base_rental"]["item_name"],
                 "description"    : (
                     f"Rental: {self.vehicle} | "
                     f"{self.date_out} to {self.actual_return_date or self.date_return} "
-                    f"({self.total_days or 0} day(s)) @ {self.rate or 0} OMR/{self.contract_type}"
+                    f"({self.total_days or 0} day(s)) "
+                    f"@ {self.rate or 0} OMR/{self.contract_type}"
                 ),
                 "qty"            : self.total_days or 1,
                 "rate"           : self.rate or 0,
@@ -226,14 +301,14 @@ class RentalContract(Document):
                 "cost_center"    : cost_center,
             })
 
-            # ── Line 2: Excess KM ──
+            # ── Line 2: Excess KM ─────────────────────────────────────────
             if (self.excess_km_charges or 0) > 0:
                 si.append("items", {
-                    "item_code"      : "Excess KM Charge",
-                    "item_name"      : "Excess Mileage Charge",
+                    "item_code"      : RENTAL_ITEMS["excess_km"]["item_code"],
+                    "item_name"      : RENTAL_ITEMS["excess_km"]["item_name"],
                     "description"    : (
-                        f"Excess KM: {self.km_used or 0} km used, "
-                        f"free allowance exceeded — charged per contract rate"
+                        f"Excess KM: {self.km_used or 0} km used — "
+                        "free allowance exceeded, charged per contract rate"
                     ),
                     "qty"            : 1,
                     "rate"           : self.excess_km_charges or 0,
@@ -241,11 +316,11 @@ class RentalContract(Document):
                     "cost_center"    : cost_center,
                 })
 
-            # ── Line 3: Late Return ──
+            # ── Line 3: Late Return ───────────────────────────────────────
             if (self.late_return_charge or 0) > 0:
                 si.append("items", {
-                    "item_code"      : "Late Return Charge",
-                    "item_name"      : "Late Return Penalty",
+                    "item_code"      : RENTAL_ITEMS["late_return"]["item_code"],
+                    "item_name"      : RENTAL_ITEMS["late_return"]["item_name"],
                     "description"    : "Late return charge as per contract terms",
                     "qty"            : 1,
                     "rate"           : self.late_return_charge or 0,
@@ -253,11 +328,11 @@ class RentalContract(Document):
                     "cost_center"    : cost_center,
                 })
 
-            # ── Line 4: Damage / Penalties ──
+            # ── Line 4: Damage / Penalties ────────────────────────────────
             if damage_charges > 0:
                 si.append("items", {
-                    "item_code"      : "Damage Charge",
-                    "item_name"      : "Damage / Penalty Charges",
+                    "item_code"      : RENTAL_ITEMS["damage"]["item_code"],
+                    "item_name"      : RENTAL_ITEMS["damage"]["item_name"],
                     "description"    : "Vehicle damage or penalty charges assessed on return",
                     "qty"            : 1,
                     "rate"           : damage_charges,
@@ -265,24 +340,16 @@ class RentalContract(Document):
                     "cost_center"    : cost_center,
                 })
 
-            # ── Compute ERPNext totals ──
+            # ── Compute ERPNext totals ─────────────────────────────────────
             si.set_missing_values()
             si.run_method("calculate_taxes_and_totals")
 
             grand_total = si.grand_total or 0
 
-            # ── Settlement summary (stored in custom fields on SI) ──
-            #    These are display fields — they do NOT alter the GL.
-            #    They allow the printed invoice / portal to show a clear breakdown.
-            #
-            #    Fields expected on Sales Invoice (add via customisation if missing):
-            #      advance_applied, deposit_collected, deposit_used_for_damage,
-            #      deposit_refund_due, deposit_applied_to_invoice, net_amount_due
-            #
+            # ── Settlement summary (custom fields on SI — display only) ───
             _set_if_exists = lambda doc, field, val: (
                 setattr(doc, field, val) if hasattr(doc, field) else None
             )
-
             _set_if_exists(si, "advance_applied",            total_advance)
             _set_if_exists(si, "deposit_collected",          total_deposit)
             _set_if_exists(si, "deposit_used_for_damage",    deposit_used_for_damage)
@@ -290,7 +357,7 @@ class RentalContract(Document):
             _set_if_exists(si, "deposit_refund_due",         deposit_refund)
             _set_if_exists(si, "net_amount_due",             net_due)
 
-            # ── Remarks on invoice (always visible) ──
+            # ── Remarks (always visible on printed invoice) ───────────────
             remarks_lines = [
                 f"Rental Contract : {self.name}",
                 f"Vehicle          : {self.vehicle}",
@@ -299,7 +366,6 @@ class RentalContract(Document):
                 f"Invoice Total    : OMR {grand_total:,.3f}",
                 f"Advance Paid     : OMR {total_advance:,.3f}  (deducted)",
             ]
-
             if deposit_used_for_damage > 0:
                 remarks_lines.append(
                     f"Deposit → Damage : OMR {deposit_used_for_damage:,.3f}  (applied)"
@@ -312,31 +378,28 @@ class RentalContract(Document):
                 remarks_lines.append(
                     f"Deposit Refund   : OMR {deposit_refund:,.3f}  ← DUE TO CUSTOMER"
                 )
-
             remarks_lines += [
                 "─" * 40,
                 f"NET DUE FROM CUSTOMER: OMR {net_due:,.3f}",
             ]
-
             if net_due == 0 and deposit_refund > 0:
                 remarks_lines.append(
                     f"⚠️  Please process refund of OMR {deposit_refund:,.3f} to customer."
                 )
-
             si.remarks = "\n".join(remarks_lines)
 
-            # ── Save & submit ──
+            # ── Save & submit ─────────────────────────────────────────────
             si.insert(ignore_permissions=True)
             si.submit()
 
             self.db_set("sales_invoice", si.name)
 
-            # ── Notify staff of refund obligation ──
+            # ── Notify staff ──────────────────────────────────────────────
             if deposit_refund > 0:
                 frappe.msgprint(
                     f"✅ Sales Invoice <b>{si.name}</b> created.<br><br>"
                     f"⚠️ <b>Deposit Refund Due: OMR {deposit_refund:,.3f}</b><br>"
-                    f"Please process the refund to the customer via the appropriate payment method.",
+                    "Please process the refund to the customer via the appropriate payment method.",
                     title="Invoice Created — Refund Required",
                     indicator="orange"
                 )
@@ -347,6 +410,10 @@ class RentalContract(Document):
                     title="Invoice Created",
                     indicator="green"
                 )
+
+        except frappe.ValidationError:
+            # Re-raise Frappe validation errors as-is (they already have a user-friendly message)
+            raise
 
         except Exception:
             frappe.log_error(frappe.get_traceback(), "Rental Invoice Creation Error")
@@ -468,7 +535,6 @@ class RentalContract(Document):
         if vat:
             return vat
 
-        # Parse from select field fallback
         vat_label = self.vat_rate or ""
         if vat_label.startswith("5"):
             return 5.0

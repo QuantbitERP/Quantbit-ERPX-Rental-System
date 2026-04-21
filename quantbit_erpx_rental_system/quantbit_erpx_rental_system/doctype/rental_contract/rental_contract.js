@@ -9,6 +9,7 @@ frappe.ui.form.on('Rental Contract', {
 
     refresh: function(frm) {
         frm.trigger("add_handover_buttons");
+        frm.trigger("add_traffic_fine_buttons");   // ← new
     },
 
     vehicle: function(frm) {
@@ -147,6 +148,76 @@ frappe.ui.form.on('Rental Contract', {
             frm.set_intro(
                 "✅ Handover Checklist is linked. You can now submit this contract.",
                 "green"
+            );
+        }
+    },
+
+    // ─────────────────────────────────────────────
+    //  TRAFFIC FINE BUTTONS & INTRO
+    //  Only shown on submitted contracts (docstatus === 1)
+    // ─────────────────────────────────────────────
+
+    add_traffic_fine_buttons: function(frm) {
+
+        // Only on submitted, saved contracts
+        if (frm.is_new() || frm.doc.docstatus !== 1) return;
+
+        // ── View Traffic Fines button ────────────────────────────────────────
+        // Opens the Traffic Fine list filtered to this contract
+        frm.add_custom_button(__("View Traffic Fines"), function() {
+            frappe.set_route("List", "Traffic Fine", {
+                matched_contract: frm.doc.name
+            });
+        }, __("Linked Documents"));
+
+        // ── Create Fine Dispute button ───────────────────────────────────────
+        // Lets staff raise a dispute against a fine linked to this contract.
+        // Opens a new Fine Dispute pre-filled with contract + customer details.
+        frm.add_custom_button(__("Raise Fine Dispute"), function() {
+            // First pick which Traffic Fine to dispute
+            let d = new frappe.ui.Dialog({
+                title: __("Raise Fine Dispute"),
+                fields: [
+                    {
+                        fieldname: "traffic_fine",
+                        fieldtype: "Link",
+                        label: __("Traffic Fine"),
+                        options: "Traffic Fine",
+                        reqd: 1,
+                        // Filter to fines matched to this contract only
+                        get_query: function() {
+                            return {
+                                filters: {
+                                    matched_contract: frm.doc.name
+                                }
+                            };
+                        }
+                    }
+                ],
+                primary_action_label: __("Create Dispute"),
+                primary_action(values) {
+                    frappe.new_doc("Fine Dispute", {
+                        traffic_fine  : values.traffic_fine,
+                        customer      : frm.doc.customer,
+                        dispute_date  : frappe.datetime.get_today(),
+                    });
+                    d.hide();
+                }
+            });
+            d.show();
+        }, __("Linked Documents"));
+
+        // ── Traffic fines intro banner ───────────────────────────────────────
+        // Shows a warning banner if this contract has fines charged to customer.
+        // traffic_fines_total is a read-only currency field on Rental Contract
+        // updated by the Traffic Fine controller on submit.
+        if ((frm.doc.traffic_fines_total || 0) > 0) {
+            frm.set_intro(
+                `⚠️ This contract has <b>OMR ${flt(frm.doc.traffic_fines_total).toFixed(3)}</b> ` +
+                `in traffic fines charged to the customer. ` +
+                `<a href="#" onclick="frappe.set_route('List','Traffic Fine',` +
+                `{'matched_contract':'${frm.doc.name}'});return false;">View Fines →</a>`,
+                "orange"
             );
         }
     },

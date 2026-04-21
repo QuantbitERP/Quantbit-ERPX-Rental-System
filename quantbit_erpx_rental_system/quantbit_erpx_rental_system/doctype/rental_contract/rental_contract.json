@@ -117,6 +117,7 @@
   "advance_applied",
   "deposit_applied",
   "net_due",
+  "traffic_fines_total",
   "section_erp_links",
   "sales_invoice",
   "advance_journal_entry",
@@ -125,8 +126,7 @@
   "handover_checklist",
   "return_checklist",
   "section_notes",
-  "contract_notes",
-  "amended_from"
+  "contract_notes"
  ],
  "fields": [
   {
@@ -883,14 +883,12 @@
    "label": "Final Rate"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Rental Contract",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "allow_on_submit": 1,
+   "description": "Sum of all submitted ROP fines charged to this customer via this contract",
+   "fieldname": "traffic_fines_total",
+   "fieldtype": "Currency",
+   "label": "Traffic Fines Total (OMR)",
+   "options": "currency"
   }
  ],
  "is_submittable": 1,
@@ -908,7 +906,7 @@
    "link_fieldname": "rental_contract"
   }
  ],
- "modified": "2026-04-20 15:36:54.104197",
+ "modified": "2026-04-21 16:20:46.942935",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Rental Contract",
