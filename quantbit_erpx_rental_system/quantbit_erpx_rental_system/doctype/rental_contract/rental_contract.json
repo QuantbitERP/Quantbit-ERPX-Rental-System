@@ -764,6 +764,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "advance_applied",
    "fieldtype": "Currency",
    "label": "Advance Applied (OMR)",
@@ -771,6 +772,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "deposit_applied",
    "fieldtype": "Currency",
    "label": "Deposit Applied (OMR)",
@@ -778,6 +780,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "net_due",
    "fieldtype": "Currency",
    "label": "Net Amount Due (OMR)",
@@ -799,6 +802,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "advance_journal_entry",
    "fieldtype": "Link",
    "label": "Advance JV Reference",
@@ -806,6 +810,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "deposit_journal_entry",
    "fieldtype": "Link",
    "label": "Deposit JV Reference",
@@ -873,6 +878,11 @@
    "reqd": 1
   },
   {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Final Rate"
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -881,11 +891,6 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "rate",
-   "fieldtype": "Currency",
-   "label": "Final Rate"
   }
  ],
  "is_submittable": 1,
@@ -903,7 +908,7 @@
    "link_fieldname": "rental_contract"
   }
  ],
- "modified": "2026-04-20 11:36:28.656403",
+ "modified": "2026-04-20 15:36:54.104197",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Rental Contract",
