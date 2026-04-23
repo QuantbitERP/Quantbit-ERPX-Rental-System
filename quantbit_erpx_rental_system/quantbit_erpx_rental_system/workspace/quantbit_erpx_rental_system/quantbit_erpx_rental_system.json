@@ -1,6 +1,15 @@
 {
- "charts": [],
- "content": "[{\"id\":\"Z8ziLS41nv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Quantbit ERPX Rental System</span>\",\"col\":12}},{\"id\":\"ACzldhrYZr\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"aR_OodUFuF\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental Operations\",\"col\":4}},{\"id\":\"QZp2nn4TCA\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental Masters\",\"col\":4}},{\"id\":\"6NfhLoJ4yB\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports and Analysis\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "New Contracts per Month",
+   "label": "New Contracts per Month"
+  },
+  {
+   "chart_name": "Monthly Revenue Trend",
+   "label": "Monthly Revenue Trend"
+  }
+ ],
+ "content": "[{\"id\":\"Z8ziLS41nv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Quantbit ERPX Rental System</span>\",\"col\":12}},{\"id\":\"ACzldhrYZr\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"p09-RPsEQD\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Revenue (MTD)\",\"col\":4}},{\"id\":\"15Oy6_n0Zu\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Contracts\",\"col\":4}},{\"id\":\"JOVtfBglzw\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"KYC Under Review\",\"col\":4}},{\"id\":\"4nBUac3CAZ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Vehicle On Rent\",\"col\":4}},{\"id\":\"cy40NTcNSW\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Available Vehicles\",\"col\":4}},{\"id\":\"z6gaYoMwN_\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"In Workshop\",\"col\":4}},{\"id\":\"Huj4heSP50\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"bS-diumapy\",\"type\":\"chart\",\"data\":{\"chart_name\":\"New Contracts per Month\",\"col\":6}},{\"id\":\"DzIsbEh2bx\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Monthly Revenue Trend\",\"col\":6}},{\"id\":\"cfgWPDoaU2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"QZp2nn4TCA\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental Masters\",\"col\":4}},{\"id\":\"aR_OodUFuF\",\"type\":\"card\",\"data\":{\"card_name\":\"Rental Operations\",\"col\":4}},{\"id\":\"6NfhLoJ4yB\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports and Analysis\",\"col\":4}}]",
  "creation": "2026-04-14 14:56:18.479990",
  "custom_blocks": [],
  "docstatus": 0,
@@ -261,11 +270,36 @@
    "type": "Link"
   }
  ],
- "modified": "2026-04-22 17:38:44.919357",
+ "modified": "2026-04-23 12:20:45.509281",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Quantbit ERPX Rental System",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Vehicle On Rent",
+   "number_card_name": "Vehicle On Rent"
+  },
+  {
+   "label": "Active Contracts",
+   "number_card_name": "Active Contracts"
+  },
+  {
+   "label": "Total Revenue (MTD)",
+   "number_card_name": "Total Revenue (MTD)"
+  },
+  {
+   "label": "KYC Under Review",
+   "number_card_name": "KYC Under Review"
+  },
+  {
+   "label": "Available Vehicles",
+   "number_card_name": "Available Vehicles"
+  },
+  {
+   "label": "In Workshop",
+   "number_card_name": "In Workshop"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
