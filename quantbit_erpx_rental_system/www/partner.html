@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Partner Registration | Quantbit Technologies</title>
+    <meta name="description"
+        content="Register as a Quantbit Technologies partner. Join our network to grow your business with ERPNext implementation, CRM, HRMS, and ERP solutions.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- TEMPLATE CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ── PAGE VARS ── */
+        :root {
+            --qb-accent: #029CFA;
+            --qb-dark: #222222;
+            --qb-white: #ffffff;
+            --qb-light: #f5f8ff;
+            --qb-border: #e2eaf4;
+            --qb-muted: #6b7a90;
+            --qb-success: #1bbf72;
+            --qb-error: #e74c3c;
+        }
+
+        /* ── BREADCRUMB BANNER ── */
+        .partner-breadcrumb {
+            background: linear-gradient(135deg, #0a1628 0%, #112240 60%, #0d1f3c 100%);
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-breadcrumb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(2, 156, 250, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 156, 250, 0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .partner-breadcrumb::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(2, 156, 250, 0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .partner-breadcrumb .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-breadcrumb h1 {
+            color: var(--qb-white);
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .partner-breadcrumb h1 span {
+            color: var(--qb-accent);
+        }
+
+        .partner-breadcrumb p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        .breadcrumb-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(2, 156, 250, 0.15);
+            border: 1px solid rgba(2, 156, 250, 0.35);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 0.8rem;
+            color: var(--qb-accent);
+            font-weight: 600;
+            margin-bottom: 18px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ── STEPPER ── */
+        .partner-stepper-wrap {
+            background: var(--qb-white);
+            border-bottom: 1px solid var(--qb-border);
+            padding: 0;
+        }
+
+        .partner-stepper {
+            display: flex;
+            align-items: stretch;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .ps-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 24px;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .ps-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 36px;
+            width: 1px;
+            background: var(--qb-border);
+        }
+
+        .ps-step.active {
+            background: #f0f8ff;
+        }
+
+        .ps-step.done {
+            background: #f0fff8;
+        }
+
+        .ps-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--qb-border);
+            color: var(--qb-muted);
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .ps-step.active .ps-num {
+            background: var(--qb-accent);
+            color: var(--qb-white);
+            box-shadow: 0 4px 14px rgba(2, 156, 250, 0.35);
+        }
+
+        .ps-step.done .ps-num {
+            background: var(--qb-success);
+            color: var(--qb-white);
+        }
+
+        .ps-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--qb-dark);
+            line-height: 1.3;
+        }
+
+        .ps-sublabel {
+            font-size: 0.75rem;
+            color: var(--qb-muted);
+        }
+
+        .ps-step.active .ps-label {
+            color: var(--qb-accent);
+        }
+
+        .ps-step.done .ps-label {
+            color: var(--qb-success);
+        }
+
+        /* ── MAIN FORM AREA ── */
+        .partner-form-section {
+            background: var(--qb-light);
+            padding: 60px 0 80px;
+        }
+
+        /* ── FORM CARD ── */
+        .partner-card {
+            background: var(--qb-white);
+            border: 1px solid var(--qb-border);
+            border-radius: 16px;
+            padding: 40px 40px 36px;
+            box-shadow: 0 4px 24px rgba(2, 156, 250, 0.07);
+            margin-bottom: 28px;
+            display: none;
+        }
+
+        .partner-card.active {
+            display: block;
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--qb-light);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(2, 156, 250, 0.12), rgba(2, 156, 250, 0.06));
+            border: 1px solid rgba(2, 156, 250, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--qb-accent);
+            flex-shrink: 0;
+        }
+
+        .card-title-block h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--qb-dark);
+            margin: 0 0 4px;
+        }
+
+        .card-title-block p {
+            font-size: 0.88rem;
+            color: var(--qb-muted);
+            margin: 0;
+        }
+
+        /* ── FORM FIELDS ── */
+        .form-clt-partner {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .form-clt-partner label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--qb-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .form-clt-partner label .opt {
+            text-transform: none;
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: var(--qb-muted);
+            letter-spacing: 0;
+            margin-left: 6px;
+        }
+
+        .form-clt-partner .field-wrap {
+            position: relative;
+        }
+
+        .form-clt-partner input,
+        .form-clt-partner select {
+            width: 100%;
+            padding: 13px 44px 13px 16px;
+            font-size: 0.95rem;
+            border: 1.5px solid var(--qb-border);
+            border-radius: 8px;
+            background: var(--qb-white);
+            color: var(--qb-dark);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-clt-partner input::placeholder {
+            color: #b0bac8;
+        }
+
+        .form-clt-partner input:hover,
+        .form-clt-partner select:hover {
+            border-color: #aacfed;
+        }
+
+        .form-clt-partner input:focus,
+        .form-clt-partner select:focus {
+            border-color: var(--qb-accent);
+            box-shadow: 0 0 0 3px rgba(2, 156, 250, 0.12);
+        }
+
+        .form-clt-partner input.error-field,
+        .form-clt-partner select.error-field {
+            border-color: var(--qb-error);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .form-clt-partner .field-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--qb-muted);
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .form-clt-partner .field-error {
+            font-size: 0.78rem;
+            color: var(--qb-error);
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-clt-partner .field-error.show {
+            display: block;
+        }
+
+        /* select arrow */
+        .form-clt-partner select {
+            cursor: pointer;
+        }
+
+        /* ── NAV BUTTONS ── */
+        .partner-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-prev {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 1.5px solid var(--qb-border);
+            background: var(--qb-white);
+            color: var(--qb-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-prev:hover {
+            border-color: var(--qb-accent);
+            color: var(--qb-accent);
+        }
+
+        .btn-prev:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 32px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, var(--qb-accent), #0280d4);
+            color: var(--qb-white);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+            box-shadow: 0 4px 16px rgba(2, 156, 250, 0.3);
+            letter-spacing: 0.02em;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(2, 156, 250, 0.4);
+        }
+
+        .btn-next:active {
+            transform: translateY(0);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* ── SUMMARY PANEL ── */
+        .summary-panel {
+            background: var(--qb-white);
+            border: 1px solid var(--qb-border);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 28px;
+            display: none;
+        }
+
+        .summary-panel.active {
+            display: block;
+        }
+
+        .summary-panel h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--qb-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-panel h4 i {
+            color: var(--qb-accent);
+        }
+
+        .summary-row {
+            display: flex;
+            gap: 12px;
+            font-size: 0.88rem;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--qb-light);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-key {
+            color: var(--qb-muted);
+            width: 160px;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+
+        .summary-val {
+            color: var(--qb-dark);
+            font-weight: 600;
+            flex: 1;
+        }
+
+        /* ── TOAST ── */
+        .qb-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--qb-white);
+            border-radius: 12px;
+            padding: 18px 24px 18px 18px;
+            box-shadow: 0 8px 36px rgba(0, 0, 0, 0.14);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            max-width: 380px;
+            z-index: 9999;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-left: 4px solid var(--qb-accent);
+        }
+
+        .qb-toast.show {
+            transform: translateX(0);
+        }
+
+        .qb-toast.toast-error {
+            border-left-color: var(--qb-error);
+        }
+
+        .qb-toast.toast-success {
+            border-left-color: var(--qb-success);
+        }
+
+        .toast-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .qb-toast.toast-success .toast-icon {
+            background: rgba(27, 191, 114, 0.12);
+            color: var(--qb-success);
+        }
+
+        .qb-toast.toast-error .toast-icon {
+            background: rgba(231, 76, 60, 0.12);
+            color: var(--qb-error);
+        }
+
+        .toast-body {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--qb-dark);
+            margin-bottom: 3px;
+        }
+
+        .toast-msg {
+            font-size: 0.82rem;
+            color: var(--qb-muted);
+            line-height: 1.5;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--qb-muted);
+            font-size: 1rem;
+            padding: 0;
+            line-height: 1;
+            margin-top: -2px;
+        }
+
+        .toast-close:hover {
+            color: var(--qb-dark);
+        }
+
+        /* ── SUCCESS STATE ── */
+        .partner-success {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .partner-success.active {
+            display: block;
+        }
+
+        .success-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--qb-success), #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 8px 30px rgba(27, 191, 114, 0.3);
+        }
+
+        .partner-success h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--qb-dark);
+            margin-bottom: 12px;
+        }
+
+        .partner-success p {
+            color: var(--qb-muted);
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto 32px;
+        }
+
+        /* ── SIDEBAR INFO ── */
+        .partner-info-box {
+            background: var(--qb-white);
+            border: 1px solid var(--qb-border);
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .partner-info-box h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--qb-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .partner-info-box h4 i {
+            color: var(--qb-accent);
+        }
+
+        .perk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--qb-light);
+            font-size: 0.88rem;
+        }
+
+        .perk-item:last-child {
+            border-bottom: none;
+        }
+
+        .perk-item i {
+            color: var(--qb-accent);
+            margin-top: 2px;
+            font-size: 0.9rem;
+        }
+
+        .perk-item strong {
+            color: var(--qb-dark);
+        }
+
+        .perk-item span {
+            color: var(--qb-muted);
+            display: block;
+            font-size: 0.8rem;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(2, 156, 250, 0.08), rgba(2, 156, 250, 0.03));
+            border: 1px solid rgba(2, 156, 250, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .contact-box p {
+            font-size: 0.88rem;
+            color: var(--qb-muted);
+            margin-bottom: 14px;
+        }
+
+        .contact-box a.theme-btn {
+            font-size: 0.9rem;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .partner-breadcrumb h1 {
+                font-size: 1.7rem;
+            }
+
+            .partner-stepper {
+                flex-direction: column;
+            }
+
+            .ps-step:not(:last-child)::after {
+                display: none;
+            }
+
+            .partner-card {
+                padding: 24px 20px;
+            }
+
+            .partner-nav {
+                flex-direction: column-reverse;
+            }
+
+            .btn-next,
+            .btn-prev {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <!-- <div id="header"></div> -->
+
+    <!-- ── BREADCRUMB / HERO ── -->
+    <section class="partner-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-badge">
+                <i class="fas fa-handshake"></i> Partner Portal
+            </div>
+            <h1 class="wow fadeInUp" data-wow-delay=".2s">
+                Become a <span>Quantbit Partner</span>
+            </h1>
+            <p class="wow fadeInUp" data-wow-delay=".4s">
+                Join our certified partner network and grow your business with ERPNext, CRM, HRMS & ERP solutions.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── STEPPER ── -->
+    <div class="partner-stepper-wrap">
+        <div class="partner-stepper" id="stepper">
+            <div class="ps-step active" id="step-indicator-1">
+                <div class="ps-num" id="snum-1">1</div>
+                <div>
+                    <div class="ps-label">Company Info</div>
+                    <div class="ps-sublabel">Business details</div>
+                </div>
+            </div>
+            <div class="ps-step" id="step-indicator-2">
+                <div class="ps-num" id="snum-2">2</div>
+                <div>
+                    <div class="ps-label">Contact</div>
+                    <div class="ps-sublabel">Email & mobile</div>
+                </div>
+            </div>
+            <div class="ps-step" id="step-indicator-3">
+                <div class="ps-num" id="snum-3">3</div>
+                <div>
+                    <div class="ps-label">Address</div>
+                    <div class="ps-sublabel">Business location</div>
+                </div>
+            </div>
+            <div class="ps-step" id="step-indicator-4">
+                <div class="ps-num" id="snum-4">4</div>
+                <div>
+                    <div class="ps-label">Review & Submit</div>
+                    <div class="ps-sublabel">Confirm & register</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <section class="partner-form-section">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- FORM COLUMN -->
+                <div class="col-lg-8">
+
+                    <!-- SUCCESS STATE -->
+                    <div class="partner-success" id="successState">
+                        <div class="success-circle"><i class="fas fa-check"></i></div>
+                        <h2>Registration Successful! 🎉</h2>
+                        <p>Welcome to the Quantbit Technologies Partner Network. Our team will contact you within 24
+                            hours to get you onboarded.</p>
+                        <a href="index.html" class="theme-btn">
+                            <span>Back to Home <i class="fas fa-chevron-right"></i></span>
+                        </a>
+                    </div>
+
+                    <!-- STEP 1: COMPANY INFO -->
+                    <div class="partner-card active" id="step-1">
+                        <div class="card-header-row">
+                            <div class="card-icon"><i class="fas fa-building"></i></div>
+                            <div class="card-title-block">
+                                <h3>Company Information</h3>
+                                <p>Basic details about your business</p>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>Supplier Name</label>
+                                    <div class="field-wrap">
+                                        <input id="supplier_name" type="text" placeholder="Acme Pvt. Ltd.">
+                                        <span class="field-icon"><i class="fal fa-building"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-supplier_name">Please enter the company name.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>Supplier Type</label>
+                                    <div class="field-wrap">
+                                        <select id="supplier_type">
+                                            <option value="Company">Company</option>
+                                            <option value="Individual">Individual</option>
+                                            <option value="Partnership">Partnership</option>
+                                        </select>
+                                        <span class="field-icon"><i class="fal fa-chevron-down"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>GST Number <span class="opt">(optional)</span></label>
+                                    <div class="field-wrap">
+                                        <input id="gst" type="text" placeholder="22AAAAA0000A1Z5">
+                                        <span class="field-icon"><i class="fal fa-id-card"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>Territory</label>
+                                    <div class="field-wrap">
+                                        <select id="territory">
+                                            <option value="All Territories">All Territories</option>
+                                            <option value="India" selected>India</option>
+                                            <option value="Rest Of The World">Rest Of The World</option>
+                                        </select>
+                                        <span class="field-icon"><i class="fal fa-chevron-down"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>Commission Rate (%) <span class="opt">(optional)</span></label>
+                                    <div class="field-wrap">
+                                        <input id="commission_rate" type="number" min="0" max="100" step="0.01"
+                                            placeholder="e.g. 10">
+                                        <span class="field-icon"><i class="fal fa-percent"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="partner-nav mt-4">
+                            <button class="btn-prev" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button class="btn-next" onclick="goNext(1)">Next <i
+                                    class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: CONTACT -->
+                    <div class="partner-card" id="step-2">
+                        <div class="card-header-row">
+                            <div class="card-icon"><i class="fas fa-address-book"></i></div>
+                            <div class="card-title-block">
+                                <h3>Contact Details</h3>
+                                <p>How we can reach you</p>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>Email Address</label>
+                                    <div class="field-wrap">
+                                        <input id="email" type="email" placeholder="rahul@acme.com">
+                                        <span class="field-icon"><i class="fal fa-envelope"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-email">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>Mobile Number</label>
+                                    <div class="field-wrap">
+                                        <input id="mobile" type="tel" placeholder="9876543210">
+                                        <span class="field-icon"><i class="fal fa-phone"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-mobile">Please enter a valid 10-digit mobile
+                                        number.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="partner-nav mt-4">
+                            <button class="btn-prev" onclick="goPrev(2)"><i class="fas fa-arrow-left"></i>
+                                Previous</button>
+                            <button class="btn-next" onclick="goNext(2)">Next <i
+                                    class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: ADDRESS -->
+                    <div class="partner-card" id="step-3">
+                        <div class="card-header-row">
+                            <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="card-title-block">
+                                <h3>Address Information</h3>
+                                <p>Your business location</p>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-clt-partner">
+                                    <label>Address Line 1</label>
+                                    <div class="field-wrap">
+                                        <input id="address" type="text" placeholder="123 MG Road">
+                                        <span class="field-icon"><i class="fal fa-map-marker-alt"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-address">Please enter your address.</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-clt-partner">
+                                    <label>Address Line 2 <span class="opt">(optional)</span></label>
+                                    <div class="field-wrap">
+                                        <input id="address_line2" type="text" placeholder="Near Central Mall">
+                                        <span class="field-icon"><i class="fal fa-map-marker-alt"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>City</label>
+                                    <div class="field-wrap">
+                                        <input id="city" type="text" placeholder="Pune">
+                                        <span class="field-icon"><i class="fal fa-city"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-city">Please enter the city.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-clt-partner">
+                                    <label>State</label>
+                                    <div class="field-wrap">
+                                        <input id="state" type="text" placeholder="Maharashtra">
+                                        <span class="field-icon"><i class="fal fa-map"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-state">Please enter the state.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-clt-partner">
+                                    <label>Pincode</label>
+                                    <div class="field-wrap">
+                                        <input id="pincode" type="text" placeholder="411001" maxlength="6">
+                                        <span class="field-icon"><i class="fal fa-hashtag"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-pincode">Please enter a valid 6-digit pincode.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-clt-partner">
+                                    <label>Country</label>
+                                    <div class="field-wrap">
+                                        <input id="country" type="text" placeholder="India" value="India">
+                                        <span class="field-icon"><i class="fal fa-globe"></i></span>
+                                    </div>
+                                    <div class="field-error" id="err-country">Please enter the country.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-clt-partner">
+                                    <label>Address Type</label>
+                                    <div class="field-wrap">
+                                        <select id="address_type">
+                                            <option value="Billing">Billing</option>
+                                            <option value="Shipping">Shipping</option>
+                                            <option value="Billing & Shipping">Billing &amp; Shipping</option>
+                                        </select>
+                                        <span class="field-icon"><i class="fal fa-chevron-down"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="partner-nav mt-4">
+                            <button class="btn-prev" onclick="goPrev(3)"><i class="fas fa-arrow-left"></i>
+                                Previous</button>
+                            <button class="btn-next" onclick="goNext(3)">Review <i
+                                    class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: REVIEW & SUBMIT -->
+                    <div class="partner-card" id="step-4">
+                        <div class="card-header-row">
+                            <div class="card-icon"><i class="fas fa-check-double"></i></div>
+                            <div class="card-title-block">
+                                <h3>Review &amp; Submit</h3>
+                                <p>Confirm your details before submitting</p>
+                            </div>
+                        </div>
+
+                        <!-- Summary -->
+                        <div id="summary-content">
+                            <!-- populated by JS -->
+                        </div>
+
+                        <div class="partner-nav mt-4">
+                            <button class="btn-prev" onclick="goPrev(4)"><i class="fas fa-arrow-left"></i> Edit</button>
+                            <button class="btn-next" id="submitBtn" onclick="submitForm()">
+                                <i class="fas fa-paper-plane"></i> Submit Registration
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="col-lg-4">
+
+                    <div class="partner-info-box">
+                        <h4><i class="fas fa-star"></i> Partner Benefits</h4>
+                        <div class="perk-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Revenue Share</strong>
+                                <span>Earn commission on every referred deal</span>
+                            </div>
+                        </div>
+                        <div class="perk-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Training & Certification</strong>
+                                <span>Access to ERPNext partner training materials</span>
+                            </div>
+                        </div>
+                        <div class="perk-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Priority Support</strong>
+                                <span>Dedicated support channel for partner queries</span>
+                            </div>
+                        </div>
+                        <div class="perk-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Co-Marketing</strong>
+                                <span>Joint go-to-market with Quantbit brand</span>
+                            </div>
+                        </div>
+                        <div class="perk-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Demo Access</strong>
+                                <span>Free sandbox environment to demo products</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-box">
+                        <p>Have questions before registering? Talk to our partner team.</p>
+                        <a href="https://wa.me/919421915433" target="_blank" class="theme-btn"
+                            style="display:inline-flex;align-items:center;gap:8px;font-size:0.9rem;">
+                            <span><i class="fab fa-whatsapp"></i> WhatsApp Us</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TOAST ── -->
+    <div class="qb-toast" id="qbToast">
+        <div class="toast-icon" id="toastIcon"><i class="fas fa-check"></i></div>
+        <div class="toast-body">
+            <div class="toast-title" id="toastTitle">Success</div>
+            <div class="toast-msg" id="toastMsg">Operation completed.</div>
+        </div>
+        <button class="toast-close" onclick="hideToast()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <!-- <div id="footer"></div> -->
+
+    <!-- ================= LOAD HEADER & FOOTER ================= -->
+    <!-- <script>
+        fetch("header.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script> -->
+
+    <!-- ================= TEMPLATE JS ================= -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/jquery.waypoints.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/slick-animation.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/circle-progress.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        /* ════════════════════════════════════════════
+           PARTNER REGISTRATION — STEP WIZARD LOGIC
+        ════════════════════════════════════════════ */
+
+        let currentStep = 1;
+        const TOTAL_STEPS = 4;
+
+        // ── NAVIGATION ──────────────────────────────
+        function goNext(from) {
+            if (!validateStep(from)) return;
+            if (from === TOTAL_STEPS - 1) buildSummary(); // before step 4
+            switchStep(from, from + 1);
+        }
+
+        function goPrev(from) {
+            switchStep(from, from - 1);
+        }
+
+        function switchStep(from, to) {
+            document.getElementById(`step-${from}`).classList.remove('active');
+            document.getElementById(`step-${to}`).classList.add('active');
+
+            // Stepper indicators
+            const fromInd = document.getElementById(`step-indicator-${from}`);
+            const toInd = document.getElementById(`step-indicator-${to}`);
+            const snum = document.getElementById(`snum-${from}`);
+
+            if (to > from) {
+                fromInd.classList.remove('active');
+                fromInd.classList.add('done');
+                snum.innerHTML = '<i class="fas fa-check"></i>';
+            } else {
+                fromInd.classList.remove('done', 'active');
+                snum.innerHTML = from;
+                document.getElementById(`snum-${from}`).innerHTML = from;
+            }
+
+            toInd.classList.remove('done');
+            toInd.classList.add('active');
+            document.getElementById(`snum-${to}`).innerHTML =
+                to < from ? to : (toInd.classList.contains('done') ? '<i class="fas fa-check"></i>' : to);
+
+            currentStep = to;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ── VALIDATION ───────────────────────────────
+        function validateStep(step) {
+            clearErrors();
+            let valid = true;
+
+            if (step === 1) {
+                const name = val('supplier_name');
+                if (!name) { showErr('supplier_name', 'Company name is required.'); valid = false; }
+            }
+
+            if (step === 2) {
+                const email = val('email');
+                const mobile = val('mobile');
+
+                if (!email) {
+                    showErr('email', 'Email address is required.'); valid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showErr('email', 'Please enter a valid email address.'); valid = false;
+                }
+
+                if (!mobile) {
+                    showErr('mobile', 'Mobile number is required.'); valid = false;
+                } else if (!/^\d{10}$/.test(mobile.replace(/\s/g, ''))) {
+                    showErr('mobile', 'Please enter a valid 10-digit mobile number.'); valid = false;
+                }
+            }
+
+            if (step === 3) {
+                const fields = ['address', 'city', 'state', 'pincode', 'country'];
+                const msgs = {
+                    address: 'Address line 1 is required.',
+                    city: 'City is required.',
+                    state: 'State is required.',
+                    pincode: 'Valid 6-digit pincode is required.',
+                    country: 'Country is required.'
+                };
+                fields.forEach(f => {
+                    if (!val(f)) { showErr(f, msgs[f]); valid = false; }
+                });
+                const pin = val('pincode');
+                if (pin && !/^\d{6}$/.test(pin)) {
+                    showErr('pincode', 'Pincode must be exactly 6 digits.'); valid = false;
+                }
+            }
+
+            if (!valid) {
+                showToast('error', 'Missing Information', 'Please fill in all required fields before continuing.');
+            }
+            return valid;
+        }
+
+        function val(id) { return document.getElementById(id).value.trim(); }
+
+        function showErr(id, msg) {
+            document.getElementById(id).classList.add('error-field');
+            const errEl = document.getElementById(`err-${id}`);
+            if (errEl) { errEl.textContent = msg; errEl.classList.add('show'); }
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-field').forEach(el => el.classList.remove('error-field'));
+            document.querySelectorAll('.field-error.show').forEach(el => el.classList.remove('show'));
+        }
+
+        // ── SUMMARY BUILD ────────────────────────────
+        function buildSummary() {
+            const rows = [
+                ['Company Name', val('supplier_name')],
+                ['Supplier Type', val('supplier_type')],
+                ['GST Number', val('gst') || '—'],
+                ['Territory', val('territory')],
+                ['Commission Rate', val('commission_rate') ? val('commission_rate') + '%' : '—'],
+                ['Email', val('email')],
+                ['Mobile', val('mobile')],
+                ['Address', [val('address'), val('address_line2'), val('city'), val('state'), val('pincode'), val('country')].filter(Boolean).join(', ')],
+                ['Address Type', val('address_type')],
+            ];
+
+            const html = rows.map(([k, v]) => `
+            <div class="summary-row">
+                <span class="summary-key">${k}</span>
+                <span class="summary-val">${v}</span>
+            </div>`).join('');
+
+            document.getElementById('summary-content').innerHTML = `
+            <div style="border:1px solid var(--qb-border);border-radius:10px;overflow:hidden;margin-bottom:8px;">
+                <div style="background:var(--qb-light);padding:12px 18px;font-size:.82rem;font-weight:700;color:var(--qb-accent);text-transform:uppercase;letter-spacing:.06em;">
+                    <i class="fas fa-clipboard-list me-2"></i>Registration Summary
+                </div>
+                <div style="padding:4px 18px 10px;">${html}</div>
+            </div>`;
+        }
+
+        // ── SUBMIT ───────────────────────────────────
+        async function submitForm() {
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+            const payload = {
+                supplier_name: val('supplier_name'),
+                supplier_type: val('supplier_type'),
+                email: val('email'),
+                mobile: val('mobile'),
+                gst: val('gst'),
+                territory: val('territory'),
+                commission_rate: val('commission_rate'),
+                address: val('address'),
+                address_line2: val('address_line2'),
+                city: val('city'),
+                state: val('state'),
+                pincode: val('pincode'),
+                country: val('country'),
+                address_type: val('address_type'),
+            };
+
+            const formBody = Object.entries(payload)
+                .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+                .join('&');
+
+            try {
+                const res = await fetch(
+                    '/api/method/quantbit_erpx_rental_system.api.create_partner.create_partner',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Frappe-CSRF-Token': getCsrfToken()
+                        },
+                        body: formBody
+                    }
+                );
+
+                const raw = await res.text();
+
+                if (!raw || raw.trim() === '') {
+                    throw new Error(`Server returned empty response (HTTP ${res.status}). Check bench logs.`);
+                }
+
+                let json;
+                try {
+                    json = JSON.parse(raw);
+                } catch {
+                    console.error('Non-JSON response:', raw.substring(0, 500));
+                    throw new Error('Server returned non-JSON. Run: tail -f logs/web.error.log');
+                }
+
+                const result = json.message || json;
+
+                if (result.status === 'success') {
+                    document.querySelectorAll('.partner-card').forEach(c => c.classList.remove('active'));
+                    document.getElementById('successState').classList.add('active');
+                    for (let i = 1; i <= 4; i++) {
+                        const ind = document.getElementById(`step-indicator-${i}`);
+                        ind.classList.remove('active');
+                        ind.classList.add('done');
+                        document.getElementById(`snum-${i}`).innerHTML = '<i class="fas fa-check"></i>';
+                    }
+                    showToast('success', 'Registration Complete!', 'Welcome to Quantbit Partner Network 🚀');
+                } else {
+                    showToast('error', 'Submission Failed', result.message || 'Something went wrong. Please try again.');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
+                }
+
+            } catch (err) {
+                console.error('Partner registration error:', err);
+                showToast('error', 'Network Error', err.message || 'Could not reach the server.');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
+            }
+        }
+
+        function getCsrfToken() {
+            const match = document.cookie.match(/csrftoken=([^;]+)/);
+            return match ? decodeURIComponent(match[1]) : 'fetch';
+        }
+
+        // ── TOAST ────────────────────────────────────
+        let toastTimer = null;
+
+        function showToast(type, title, msg) {
+            const t = document.getElementById('qbToast');
+            const ico = document.getElementById('toastIcon');
+            t.className = `qb-toast toast-${type}`;
+            ico.innerHTML = type === 'success' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-exclamation-triangle"></i>';
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMsg').textContent = msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('qbToast').classList.remove('show');
+        }
+    </script>
+
+</body>
+
+</html>

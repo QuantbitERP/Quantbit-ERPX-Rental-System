@@ -247,3 +247,15 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+    # Export the Role itself
+    {
+        "dt": "Role",
+        "filters": [["role_name", "=", "Rental Admin"]]
+    },
+    # Export all Custom DocPerms for Rental Admin
+    {
+        "dt": "Custom DocPerm",
+        "filters": [["role", "=", "Rental Admin"]]
+    }
+]
