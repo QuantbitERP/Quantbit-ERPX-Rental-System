@@ -248,15 +248,22 @@ app_license = "mit"
 # ignore_translatable_strings_from = []
 
 fixtures = [
-    # Export the Role itself
     {
-        "dt": "Role",
-        "filters": [["role_name", "=", "Rental Admin"]]
+        "doctype": "Role",
+        "filters": [
+            ["role_name", "=", "Rental Admin"]
+        ]
     },
-    # Export all Custom DocPerms for Rental Admin
     {
-        "dt": "Custom DocPerm",
-        "filters": [["role", "=", "Rental Admin"]]
+        "doctype": "Custom DocPerm",
+        "filters": [
+            ["role", "=", "Rental Admin"]
+        ]
+    },
+    {
+        "doctype": "Report",
+        "filters": [
+            ["module", "=", "quantbit_erpx_rental_system"]
+        ]
     }
 ]
-
