@@ -126,6 +126,7 @@
   "column_break_mlxn",
   "new_damage_panels",
   "traffic_fines_section_section",
+  "fine_summary_text",
   "fine_summary_html",
   "section_erp_links",
   "sales_invoice",
@@ -135,7 +136,8 @@
   "handover_checklist",
   "return_checklist",
   "section_notes",
-  "contract_notes"
+  "contract_notes",
+  "amended_from"
  ],
  "fields": [
   {
@@ -961,6 +963,23 @@
    "fieldname": "fine_summary_html",
    "fieldtype": "HTML",
    "label": "Traffic Fine Summary"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "fine_summary_text",
+   "fieldtype": "Small Text",
+   "label": "Traffic Fine Status Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rental Contract",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "is_submittable": 1,
@@ -978,7 +997,7 @@
    "link_fieldname": "rental_contract"
   }
  ],
- "modified": "2026-04-22 11:59:44.143962",
+ "modified": "2026-04-23 10:23:30.399700",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Rental Contract",

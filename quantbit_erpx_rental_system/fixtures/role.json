@@ -1,0 +1,15 @@
+[
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-05-04 17:39:19.392062",
+  "name": "Rental Admin",
+  "restrict_to_domain": null,
+  "role_name": "Rental Admin",
+  "two_factor_auth": 0
+ }
+]

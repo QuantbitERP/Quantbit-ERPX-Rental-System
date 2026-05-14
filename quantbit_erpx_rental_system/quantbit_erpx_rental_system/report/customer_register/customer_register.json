@@ -7,10 +7,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 4,
  "is_standard": "Yes",
  "letter_head": null,
- "modified": "2026-04-22 15:44:15.192822",
+ "modified": "2026-05-05 11:51:17.848777",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Customer Register",
@@ -28,6 +28,9 @@
   },
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Rental Admin"
   }
  ],
  "timeout": 0

@@ -31,8 +31,7 @@
   "bounce_reason",
   "representation_count",
   "erpnext_journal_entry",
-  "notes",
-  "amended_from"
+  "notes"
  ],
  "fields": [
   {
@@ -115,6 +114,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "collected_by",
    "fieldtype": "Link",
    "label": "Collected By (Staff)",
@@ -125,17 +125,20 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "date_submitted_to_bank",
    "fieldtype": "Date",
    "label": "Date Submitted to Bank"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "submitted_by",
    "fieldtype": "Link",
    "label": "Submitted By (Staff)",
    "options": "User"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "bank_reference_number",
    "fieldtype": "Data",
    "label": "Bank Submission Reference No."
@@ -146,6 +149,7 @@
    "label": "Status & Realisation"
   },
   {
+   "allow_on_submit": 1,
    "default": "Collected - Held",
    "fieldname": "pdc_status",
    "fieldtype": "Select",
@@ -155,6 +159,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.pdc_status=='Cleared'",
    "fieldname": "realisation_date",
    "fieldtype": "Date",
@@ -165,6 +170,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.pdc_status=='Bounced'",
    "fieldname": "bounce_reason",
    "fieldtype": "Select",
@@ -172,6 +178,7 @@
    "options": "\nInsufficient Funds\nSignature Mismatch\nAccount Closed\nPost-Dated - Presented Early\nStopped by Account Holder\nOther"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "description": "Number of times this cheque has been re-presented after bounce",
    "fieldname": "representation_count",
@@ -190,21 +197,11 @@
    "fieldname": "notes",
    "fieldtype": "Small Text",
    "label": "Notes"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "PDC Register",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-14 13:55:03.403818",
+ "modified": "2026-04-23 11:23:31.313783",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "PDC Register",

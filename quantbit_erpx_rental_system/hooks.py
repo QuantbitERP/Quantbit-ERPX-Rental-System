@@ -247,3 +247,23 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+    {
+        "doctype": "Role",
+        "filters": [
+            ["role_name", "=", "Rental Admin"]
+        ]
+    },
+    {
+        "doctype": "Custom DocPerm",
+        "filters": [
+            ["role", "=", "Rental Admin"]
+        ]
+    },
+    {
+        "doctype": "Report",
+        "filters": [
+            ["module", "=", "quantbit_erpx_rental_system"]
+        ]
+    }
+]

@@ -7,10 +7,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 3,
  "is_standard": "Yes",
  "letter_head": null,
- "modified": "2026-04-22 15:29:20.523173",
+ "modified": "2026-05-05 11:51:37.231466",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Vehicle Rental Register",
@@ -28,6 +28,9 @@
   },
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Rental Admin"
   }
  ],
  "timeout": 0

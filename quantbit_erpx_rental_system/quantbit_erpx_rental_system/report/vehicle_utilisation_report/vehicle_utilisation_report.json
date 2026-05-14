@@ -7,10 +7,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 5,
  "is_standard": "Yes",
  "letter_head": null,
- "modified": "2026-04-22 17:36:18.945768",
+ "modified": "2026-05-05 11:51:50.748755",
  "modified_by": "Administrator",
  "module": "quantbit_erpx_rental_system",
  "name": "Vehicle Utilisation Report",
@@ -28,6 +28,9 @@
   },
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Rental Admin"
   }
  ],
  "timeout": 0

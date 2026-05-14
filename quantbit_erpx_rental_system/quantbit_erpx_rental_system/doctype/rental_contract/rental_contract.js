@@ -1,14 +1,5 @@
 // Copyright (c) 2026, Quantbit Technologies Pvt. Ltd. and contributors
 // For license information, please see license.txt
-//
-// ── JS CHANGE LOG ───────────────────────────────────────────────────────────
-//  FIX A  setup() adds frm.set_query on vehicle — only Available vehicles shown.
-//  FIX B  actual_return_date trigger re-renders buttons + billing summary live.
-//  FIX C  add_deposit_billing_summary() injected into refresh — renders a live
-//         HTML summary card in the Deposit & Billing section showing advance,
-//         deposit, settlement mode, net due, and deposit refund status.
-//  FIX D  recalculate trigger added — recomputes billing summary on km/date change.
-// ────────────────────────────────────────────────────────────────────────────
 
 frappe.ui.form.on('Rental Contract', {
 

@@ -1,0 +1,252 @@
+[
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2026-05-05 11:50:56.535995",
+  "module": "quantbit_erpx_rental_system",
+  "name": "Rental Summary",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Rental Contract",
+  "reference_report": null,
+  "report_name": "Rental Summary",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Rental Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Fleet Manager"
+   },
+   {
+    "parent": "Rental Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Billing Staff"
+   },
+   {
+    "parent": "Rental Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Rental Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Rental Admin"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2026-05-05 11:52:03.161678",
+  "module": "quantbit_erpx_rental_system",
+  "name": "Vehicle Profit & Loss Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Rental Contract",
+  "reference_report": null,
+  "report_name": "Vehicle Profit & Loss Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Vehicle Profit & Loss Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Fleet Manager"
+   },
+   {
+    "parent": "Vehicle Profit & Loss Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Billing Staff"
+   },
+   {
+    "parent": "Vehicle Profit & Loss Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Vehicle Profit & Loss Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Rental Admin"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2026-05-05 11:51:37.231466",
+  "module": "quantbit_erpx_rental_system",
+  "name": "Vehicle Rental Register",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Vehicle Master",
+  "reference_report": null,
+  "report_name": "Vehicle Rental Register",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Vehicle Rental Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Fleet Manager"
+   },
+   {
+    "parent": "Vehicle Rental Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Billing Staff"
+   },
+   {
+    "parent": "Vehicle Rental Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Vehicle Rental Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Rental Admin"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2026-05-05 11:51:17.848777",
+  "module": "quantbit_erpx_rental_system",
+  "name": "Customer Register",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Customer KYC",
+  "reference_report": null,
+  "report_name": "Customer Register",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Customer Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Fleet Manager"
+   },
+   {
+    "parent": "Customer Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Billing Staff"
+   },
+   {
+    "parent": "Customer Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Customer Register",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Rental Admin"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2026-05-05 11:51:50.748755",
+  "module": "quantbit_erpx_rental_system",
+  "name": "Vehicle Utilisation Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Rental Contract",
+  "reference_report": null,
+  "report_name": "Vehicle Utilisation Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Vehicle Utilisation Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Fleet Manager"
+   },
+   {
+    "parent": "Vehicle Utilisation Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Billing Staff"
+   },
+   {
+    "parent": "Vehicle Utilisation Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Vehicle Utilisation Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Rental Admin"
+   }
+  ],
+  "timeout": 0
+ }
+]
